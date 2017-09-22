@@ -34,9 +34,7 @@ import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONException;
 import org.junit.Test;
@@ -103,14 +101,12 @@ public class BdioNodeFactoryTest {
         final String projectGroup = "com.blackducksoftware.gradle.test";
         final String projectName = "gradleTestProject";
         final String projectVersion = "99.5-SNAPSHOT";
-        final Map<String, String> customData = new HashMap<>();
-        customData.put("testVersion", "1.2.3-SNAPSHOT");
         final ExternalId mavenExternalId = externalIdFactory.createMavenExternalId(projectGroup, projectName, projectVersion);
         final String projectExternalId = mavenExternalId.createExternalId();
         final String projectBdioId = mavenExternalId.createBdioId();
 
         final BdioBillOfMaterials bdioBillOfMaterials = bdioNodeFactory.createBillOfMaterials("", projectName, projectVersion);
-        bdioBillOfMaterials.customData = customData;
+        bdioBillOfMaterials.putCustomData("testVersion", "1.2.3-SNAPSHOT");
         // we are overriding the default value of a new uuid just to pass the json comparison
         bdioBillOfMaterials.id = "uuid:45772d33-5353-44f1-8681-3d8a15540646";
 

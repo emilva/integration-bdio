@@ -24,6 +24,7 @@
 package com.blackducksoftware.integration.hub.bdio.simple.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,4 +46,10 @@ public class BdioNode {
     @SerializedName("relationship")
     public List<BdioRelationship> relationships = new ArrayList<>();
 
+    public String putCustomData(final String key, final String value) {
+        if (customData == null) {
+            customData = new HashMap<>();
+        }
+        return customData.put(key, value);
+    }
 }
